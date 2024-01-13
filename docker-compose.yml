@@ -1,0 +1,99 @@
+version: "3.9"
+services:
+
+  # DASHBOARDS
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    ports:
+      - ${GRAFANA_EXPOSE_PORT}:3000
+    volumes:
+      - ./logs:/var/log/grafana
+      - grafana:/var/lib/grafana
+    user: ${ID}
+    environment:
+      - TZ=Europe/Madrid
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+      - VIRTUAL_HOST=${GRAFANA_DOMAIN}
+      - VIRTUAL_PORT=3000
+    networks:
+      - docker-net
+
+  # METRICS COLLECTOR
+  prometheus:
+    image: bitnami/prometheus
+    container_name: prometheus
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    environment:
+      - TZ=Europe/Madrid
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus:/prometheus
+    networks:
+      - docker-net
+    ports:
+      - ${PROMETHEUS_PORT}:9090
+
+  # SYSTEM AGENT
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    env_file:
+      - ./.env
+    ports:
+      - ${NODE_EXPORTER_PORT}:9100
+    command:
+      - '--path.rootfs=/host'
+      # - --collector.filesystem.ignored-mount-points
+      # network_mode: host
+    pid: host
+    restart: unless-stopped
+    networks:
+      - docker-net
+    volumes:
+      - '/:/host:ro,rslave'
+
+  # DOCKER AGENT
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    env_file:
+      - ./.env
+    restart: unless-stopped
+    expose:
+      - ${CADVISOR_PORT}
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    privileged: true
+    networks:
+      - docker-net
+
+  # LOGS MONITOR
+  loki:
+    image: grafana/loki
+    container_name: loki
+    restart: unless-stopped
+    ports:
+      - ${LOKI_PORT}:3100
+    volumes:
+      - loki:/loki
+    environment:
+      - TZ=Europe/Madrid
+    networks:
+      - docker-net
+networks:
+  docker-net:
+    external: ${NET_EXTERNAL}
+volumes:
+  grafana:
+  prometheus:
+  loki:

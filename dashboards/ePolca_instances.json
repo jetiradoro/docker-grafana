@@ -1,0 +1,455 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 7,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "c4ed69b0-aa62-4601-b090-bd73f1008078"
+      },
+      "description": "Versiones de todas las instancias de ePolca",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "cellHeight": "md",
+        "footer": {
+          "countRows": true,
+          "enablePagination": false,
+          "fields": "",
+          "reducer": ["sum"],
+          "show": false
+        },
+        "frameIndex": 1,
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "{\"resources_availability\":\"21%\",\"resources_required\":\"5%\"} {cells=\"{\"cells_machine_status\":\"Todas las celulas tienen maquinas configuradas\",\"cells_without_machines\":[],\"exists_cells\":\"Hay 37 células configuradas\"}\", operators=\"Hay 64 maquinas sin operarios asignados\", shifts=\"{\"shifts\":[{\"duration\":\"7.83\",\"shift\":\"Matí\",\"time_end\":\"13:55:00\",\"time_start\":\"06:05:00\"},{\"duration\":\"7.83\",\"shift\":\"Tarda\",\"time_end\":\"21:55:00\",\"time_start\":\"14:05:00\"},{\"duration\":\"7.83\",\"shift\":\"Nit\",\"time_end\":\"05:55:00\",\"time_start\":\"22:05:00\"}],\"shifts_available\":\"Existen turnos configurados\",\"total_shift_hours\":23.490000000000002}\", simulation_state=\"{\"label\":\"Activado\",\"last_simulation\":\"13/01/2024 20:00\",\"state\":\"1\"}\", sync_state=\"{\"label\":\"Activado\",\"last_sync\":\"13/01/2024 20:00\",\"state\":\"1\"}\", version=\"v7.11.1\"}"
+          }
+        ]
+      },
+      "pluginVersion": "10.2.3",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "instance",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "version",
+              "text": "",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "c4ed69b0-aa62-4601-b090-bd73f1008078"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "json_options": {
+            "root_is_not_array": false
+          },
+          "refId": "epolca local",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://epolca-app/api/monitor/factory/status",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "Bearer secret"
+              },
+              {
+                "key": "header-key",
+                "value": "header-value"
+              }
+            ],
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "instance",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "version",
+              "text": "",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "c4ed69b0-aa62-4601-b090-bd73f1008078"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "refId": "inoxtop",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "https://inoxtop.innovait.cat/api/monitor/factory/status",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "Bearer jkgjG39wwM8ZVW67"
+              }
+            ],
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "instance",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "version",
+              "text": "",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "c4ed69b0-aa62-4601-b090-bd73f1008078"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "refId": "Mafesa",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "https://mafesa-epolca.innovait.cat/api/monitor/factory/status",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "Bearer Y1pDP65XVLMxF839XBiXH42hpH4r3B5H2UNE17T33LdF9n7u6j3svkr11J7gSz6w"
+              }
+            ],
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "instance",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "version",
+              "text": "",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "c4ed69b0-aa62-4601-b090-bd73f1008078"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "refId": "Some",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "https://some-epolca.innovait.cat/api/monitor/factory/status",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "Bearer zX8xa6K9chpAsjWwLt2TeZrFmgB4uSfHRVP3UnQ7bdEk5DyJYv"
+              }
+            ],
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "instance",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "version",
+              "text": "",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "c4ed69b0-aa62-4601-b090-bd73f1008078"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "refId": "Blumeprot",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "https://blumeprot-epolca.innovait.cat/api/monitor/factory/status",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "Bearer m4bTb4691Q5PD4948yA6jq2F985N735V"
+              }
+            ],
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "instance",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "version",
+              "text": "",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "c4ed69b0-aa62-4601-b090-bd73f1008078"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "refId": "Innova Demos",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "https://demo-epolca.innovait.cat/api/monitor/factory/status",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "Bearer secret"
+              }
+            ],
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "instance",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "version",
+              "text": "",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "c4ed69b0-aa62-4601-b090-bd73f1008078"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "refId": "QRM",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "https://epolca.innovait.cat/api/monitor/factory/status",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "Bearer secret"
+              }
+            ],
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "instance",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "version",
+              "text": "",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "c4ed69b0-aa62-4601-b090-bd73f1008078"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "refId": "Freezecast",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "https://freezecast.innovait.cat/api/monitor/factory/status",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "Bearer ABzcsEmb9BuGr6hnHQ3B7f"
+              }
+            ],
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "instance",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "version",
+              "text": "",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "c4ed69b0-aa62-4601-b090-bd73f1008078"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "refId": "Grafopack",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "https://grafopack.innovait.cat/api/monitor/factory/status",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "Bearer PprFUrzA978CS2a3ipMXChr7eAcDEs"
+              }
+            ],
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "ePolca Instance Versions",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "refresh": "1h",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "ePolca Instances",
+  "uid": "f065dd9c-6a29-4dc5-a9ef-c8db6d1a0990",
+  "version": 18,
+  "weekStart": ""
+}
